@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <title>24metrics Clicks API</title>
+  <!-- needed for adaptive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="https://cdn.redocly.com/redoc/v2.5.0/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="6.1.19">.fqkwbU{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.fqkwbU{width:100%;padding:40px 40px;}}/*!sc*/
+.dCzIPc{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.dCzIPc{width:100%;padding:0px 40px;}}/*!sc*/
+data-styled.g4[id="sc-ggWZvA"]{content:"fqkwbU,dCzIPc,"}/*!sc*/
+.bPmFpz{padding:40px 0;}/*!sc*/
+.bPmFpz:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.bPmFpz>.bPmFpz:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.bPmFpz{padding:0;}}/*!sc*/
+.gHrCVQ{padding:40px 0;position:relative;}/*!sc*/
+.gHrCVQ:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.gHrCVQ>.gHrCVQ:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gHrCVQ{padding:0;}}/*!sc*/
+.gHrCVQ:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0, 0, 0, 0.2);}/*!sc*/
+data-styled.g5[id="sc-dTvVRJ"]{content:"bPmFpz,gHrCVQ,"}/*!sc*/
+.htRtDH{width:40%;color:#ffffff;background-color:#2B5081;padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.htRtDH{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g6[id="sc-jwTyAe"]{content:"htRtDH,"}/*!sc*/
+.gBnQhp{background-color:#2B5081;}/*!sc*/
+data-styled.g7[id="sc-hjsuWn"]{content:"gBnQhp,"}/*!sc*/
+.gkiSyE{display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gkiSyE{flex-direction:column;}}/*!sc*/
+data-styled.g8[id="sc-jJLAfE"]{content:"gkiSyE,"}/*!sc*/
+.cBLmlW{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g9[id="sc-hwkwBN"]{content:"cBLmlW,"}/*!sc*/
+.kXfdCB{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
+data-styled.g10[id="sc-kNOymR"]{content:"kXfdCB,"}/*!sc*/
+.hnmgNW{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.27em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g11[id="sc-dYwGCk"]{content:"hnmgNW,"}/*!sc*/
+.drJHMo{color:#ffffff;}/*!sc*/
+data-styled.g12[id="sc-lgpSej"]{content:"drJHMo,"}/*!sc*/
+.czjApA{border-bottom:1px solid rgba(38, 50, 56, 0.3);margin:1em 0 1em 0;color:rgba(38, 50, 56, 0.5);font-weight:normal;text-transform:uppercase;font-size:0.929em;line-height:20px;}/*!sc*/
+data-styled.g13[id="sc-eqYatC"]{content:"czjApA,"}/*!sc*/
+.fRdsOi{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.fRdsOi:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover>.fRdsOi::before,h2:hover>.fRdsOi::before,.fRdsOi:hover::before{visibility:visible;}/*!sc*/
+data-styled.g14[id="sc-kcLKEh"]{content:"fRdsOi,"}/*!sc*/
+.dUlzCe{height:18px;width:18px;min-width:18px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.hMrBOK{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;transition:transform 0.2s ease-out;transform:rotateZ(0);}/*!sc*/
+.hMrBOK polygon{fill:#1d8127;}/*!sc*/
+.iuNpUs{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(0);}/*!sc*/
+.iuNpUs polygon{fill:white;}/*!sc*/
+data-styled.g15[id="sc-dntSTA"]{content:"dUlzCe,hMrBOK,iuNpUs,"}/*!sc*/
+.gdmNWp{border-left:1px solid #7c7cbb;box-sizing:border-box;position:relative;padding:10px 10px 10px 0;}/*!sc*/
+@media screen and (max-width: 50rem){.gdmNWp{display:block;overflow:hidden;}}/*!sc*/
+tr:first-of-type>.gdmNWp,tr.last>.gdmNWp{border-left-width:0;background-position:top left;background-repeat:no-repeat;background-size:1px 100%;}/*!sc*/
+tr:first-of-type>.gdmNWp{background-image:linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 22px,
+      #7c7cbb 22px,
+      #7c7cbb 100%
+    );}/*!sc*/
+tr.last>.gdmNWp{background-image:linear-gradient(
+      to bottom,
+      #7c7cbb 0%,
+      #7c7cbb 22px,
+      transparent 22px,
+      transparent 100%
+    );}/*!sc*/
+tr.last+tr>.gdmNWp{border-left-color:transparent;}/*!sc*/
+tr.last:first-child>.gdmNWp{background:none;border-left-color:transparent;}/*!sc*/
+data-styled.g18[id="sc-kCuUfV"]{content:"gdmNWp,"}/*!sc*/
+.UNvwF{vertical-align:top;line-height:20px;white-space:nowrap;font-size:13px;font-family:IBM Plex Sans,Roboto,sans-serif;}/*!sc*/
+.UNvwF.deprecated{text-decoration:line-through;color:#707070;}/*!sc*/
+data-styled.g20[id="sc-fbQrwq"]{content:"UNvwF,"}/*!sc*/
+.ixGaBD{border-bottom:1px solid #9fb4be;padding:10px 0;width:75%;box-sizing:border-box;}/*!sc*/
+tr.expanded .ixGaBD{border-bottom:none;}/*!sc*/
+@media screen and (max-width: 50rem){.ixGaBD{padding:0 20px;border-bottom:none;border-left:1px solid #7c7cbb;}tr.last>.ixGaBD{border-left:none;}}/*!sc*/
+data-styled.g21[id="sc-gGKoUb"]{content:"ixGaBD,"}/*!sc*/
+.gGDjdI{color:#7c7cbb;font-family:IBM Plex Sans,Roboto,sans-serif;margin-right:10px;}/*!sc*/
+.gGDjdI::before{content:'';display:inline-block;vertical-align:middle;width:10px;height:1px;background:#7c7cbb;}/*!sc*/
+.gGDjdI::after{content:'';display:inline-block;vertical-align:middle;width:1px;background:#7c7cbb;height:7px;}/*!sc*/
+data-styled.g22[id="sc-hwddKA"]{content:"gGDjdI,"}/*!sc*/
+.icJLQx{border-collapse:separate;border-radius:3px;font-size:14px;border-spacing:0;width:100%;}/*!sc*/
+.icJLQx >tr{vertical-align:middle;}/*!sc*/
+@media screen and (max-width: 50rem){.icJLQx{display:block;}.icJLQx >tr,.icJLQx >tbody>tr{display:block;}}/*!sc*/
+@media screen and (max-width: 50rem) and (-ms-high-contrast:none){.icJLQx td{float:left;width:100%;}}/*!sc*/
+.icJLQx .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil{margin:1em;margin-right:0;background:#fafafa;}/*!sc*/
+.icJLQx .sc-jaXbil .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil{background:#ffffff;}/*!sc*/
+data-styled.g24[id="sc-eqNDNG"]{content:"icJLQx,"}/*!sc*/
+.DhkSG >ul{list-style:none;padding:0;margin:0;margin:0 -5px;}/*!sc*/
+.DhkSG >ul >li{padding:5px 10px;display:inline-block;background-color:#1e385b;border-bottom:1px solid rgba(0, 0, 0, 0.5);cursor:pointer;text-align:center;outline:none;color:#ccc;margin:0 5px 5px 5px;border:1px solid #182c48;border-radius:5px;min-width:60px;font-size:0.9em;font-weight:bold;}/*!sc*/
+.DhkSG >ul >li.react-tabs__tab--selected{color:#333333;background:#ffffff;}/*!sc*/
+.DhkSG >ul >li.react-tabs__tab--selected:focus{outline:auto;}/*!sc*/
+.DhkSG >ul >li:only-child{flex:none;min-width:100px;}/*!sc*/
+.DhkSG >ul >li.tab-success{color:#1d8127;}/*!sc*/
+.DhkSG >ul >li.tab-redirect{color:#ffa500;}/*!sc*/
+.DhkSG >ul >li.tab-info{color:#87ceeb;}/*!sc*/
+.DhkSG >ul >li.tab-error{color:#d41f1c;}/*!sc*/
+.DhkSG >.react-tabs__tab-panel{background:#1e385b;}/*!sc*/
+.DhkSG >.react-tabs__tab-panel>div,.DhkSG >.react-tabs__tab-panel>pre{padding:20px;margin:0;}/*!sc*/
+.DhkSG >.react-tabs__tab-panel>div>pre{padding:0;}/*!sc*/
+data-styled.g30[id="sc-cOpnSz"]{content:"DhkSG,"}/*!sc*/
+.kIppRw code[class*='language-'],.kIppRw pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.kIppRw code[class*='language-'],.kIppRw pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.kIppRw pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.kIppRw .token.comment,.kIppRw .token.prolog,.kIppRw .token.doctype,.kIppRw .token.cdata{color:hsl(30, 20%, 50%);}/*!sc*/
+.kIppRw .token.punctuation{opacity:0.7;}/*!sc*/
+.kIppRw .namespace{opacity:0.7;}/*!sc*/
+.kIppRw .token.property,.kIppRw .token.tag,.kIppRw .token.number,.kIppRw .token.constant,.kIppRw .token.symbol{color:#4a8bb3;}/*!sc*/
+.kIppRw .token.boolean{color:#e64441;}/*!sc*/
+.kIppRw .token.selector,.kIppRw .token.attr-name,.kIppRw .token.string,.kIppRw .token.char,.kIppRw .token.builtin,.kIppRw .token.inserted{color:#a0fbaa;}/*!sc*/
+.kIppRw .token.selector+a,.kIppRw .token.attr-name+a,.kIppRw .token.string+a,.kIppRw .token.char+a,.kIppRw .token.builtin+a,.kIppRw .token.inserted+a,.kIppRw .token.selector+a:visited,.kIppRw .token.attr-name+a:visited,.kIppRw .token.string+a:visited,.kIppRw .token.char+a:visited,.kIppRw .token.builtin+a:visited,.kIppRw .token.inserted+a:visited{color:#4ed2ba;text-decoration:underline;}/*!sc*/
+.kIppRw .token.property.string{color:white;}/*!sc*/
+.kIppRw .token.operator,.kIppRw .token.entity,.kIppRw .token.url,.kIppRw .token.variable{color:hsl(40, 90%, 60%);}/*!sc*/
+.kIppRw .token.atrule,.kIppRw .token.attr-value,.kIppRw .token.keyword{color:hsl(350, 40%, 70%);}/*!sc*/
+.kIppRw .token.regex,.kIppRw .token.important{color:#e90;}/*!sc*/
+.kIppRw .token.important,.kIppRw .token.bold{font-weight:bold;}/*!sc*/
+.kIppRw .token.italic{font-style:italic;}/*!sc*/
+.kIppRw .token.entity{cursor:help;}/*!sc*/
+.kIppRw .token.deleted{color:red;}/*!sc*/
+data-styled.g32[id="sc-eVqvcJ"]{content:"kIppRw,"}/*!sc*/
+.iUroIg{opacity:0.7;transition:opacity 0.3s ease;text-align:right;}/*!sc*/
+.iUroIg:focus-within{opacity:1;}/*!sc*/
+.iUroIg >button{background-color:transparent;border:0;color:inherit;padding:2px 10px;font-family:IBM Plex Sans,Roboto,sans-serif;font-size:14px;line-height:1.5em;cursor:pointer;outline:0;}/*!sc*/
+.iUroIg >button :hover,.iUroIg >button :focus{background:rgba(255, 255, 255, 0.1);}/*!sc*/
+data-styled.g33[id="sc-bbbBoY"]{content:"iUroIg,"}/*!sc*/
+.ghzOpX{position:relative;}/*!sc*/
+data-styled.g37[id="sc-eknHtZ"]{content:"ghzOpX,"}/*!sc*/
+.cFlAeY{margin-left:10px;text-transform:none;font-size:0.929em;color:black;}/*!sc*/
+data-styled.g41[id="sc-dNFkOE"]{content:"cFlAeY,"}/*!sc*/
+.hhWssO{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.hhWssO p:last-child{margin-bottom:0;}/*!sc*/
+.hhWssO h1{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.hhWssO h2{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.hhWssO code{color:#61226D;background-color:rgba(38, 50, 56, 0.05);font-family:IBM Plex Sans,Roboto,sans-serif;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.hhWssO pre{font-family:IBM Plex Sans,Roboto,sans-serif;white-space:pre;background-color:#1e385b;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.hhWssO pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.hhWssO pre code:before,.hhWssO pre code:after{content:none;}/*!sc*/
+.hhWssO blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.hhWssO img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.hhWssO ul,.hhWssO ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.hhWssO ul ul,.hhWssO ol ul,.hhWssO ul ol,.hhWssO ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.hhWssO table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.hhWssO table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.hhWssO table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.hhWssO table th,.hhWssO table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.hhWssO table th{text-align:left;font-weight:bold;}/*!sc*/
+.hhWssO .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.hhWssO .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.hhWssO h1:hover>.share-link::before,.hhWssO h2:hover>.share-link::before,.hhWssO .share-link:hover::before{visibility:visible;}/*!sc*/
+.hhWssO a{text-decoration:auto;color:#32329f;}/*!sc*/
+.hhWssO a:visited{color:#32329f;}/*!sc*/
+.hhWssO a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+.bImzoM{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.bImzoM p:last-child{margin-bottom:0;}/*!sc*/
+.bImzoM p:first-child{margin-top:0;}/*!sc*/
+.bImzoM p:last-child{margin-bottom:0;}/*!sc*/
+.bImzoM h1{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.bImzoM h2{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.bImzoM code{color:#61226D;background-color:rgba(38, 50, 56, 0.05);font-family:IBM Plex Sans,Roboto,sans-serif;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.bImzoM pre{font-family:IBM Plex Sans,Roboto,sans-serif;white-space:pre;background-color:#1e385b;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.bImzoM pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.bImzoM pre code:before,.bImzoM pre code:after{content:none;}/*!sc*/
+.bImzoM blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.bImzoM img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.bImzoM ul,.bImzoM ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.bImzoM ul ul,.bImzoM ol ul,.bImzoM ul ol,.bImzoM ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.bImzoM table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.bImzoM table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.bImzoM table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.bImzoM table th,.bImzoM table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.bImzoM table th{text-align:left;font-weight:bold;}/*!sc*/
+.bImzoM .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.bImzoM .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.bImzoM h1:hover>.share-link::before,.bImzoM h2:hover>.share-link::before,.bImzoM .share-link:hover::before{visibility:visible;}/*!sc*/
+.bImzoM a{text-decoration:auto;color:#32329f;}/*!sc*/
+.bImzoM a:visited{color:#32329f;}/*!sc*/
+.bImzoM a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+.hPgGU{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.hPgGU p:last-child{margin-bottom:0;}/*!sc*/
+.hPgGU p:first-child{margin-top:0;}/*!sc*/
+.hPgGU p:last-child{margin-bottom:0;}/*!sc*/
+.hPgGU p{display:inline-block;}/*!sc*/
+.hPgGU h1{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.hPgGU h2{font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.hPgGU code{color:#61226D;background-color:rgba(38, 50, 56, 0.05);font-family:IBM Plex Sans,Roboto,sans-serif;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.hPgGU pre{font-family:IBM Plex Sans,Roboto,sans-serif;white-space:pre;background-color:#1e385b;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.hPgGU pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.hPgGU pre code:before,.hPgGU pre code:after{content:none;}/*!sc*/
+.hPgGU blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.hPgGU img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.hPgGU ul,.hPgGU ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.hPgGU ul ul,.hPgGU ol ul,.hPgGU ul ol,.hPgGU ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.hPgGU table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.hPgGU table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.hPgGU table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.hPgGU table th,.hPgGU table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.hPgGU table th{text-align:left;font-weight:bold;}/*!sc*/
+.hPgGU .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.hPgGU .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.hPgGU h1:hover>.share-link::before,.hPgGU h2:hover>.share-link::before,.hPgGU .share-link:hover::before{visibility:visible;}/*!sc*/
+.hPgGU a{text-decoration:auto;color:#32329f;}/*!sc*/
+.hPgGU a:visited{color:#32329f;}/*!sc*/
+.hPgGU a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g42[id="sc-fszimp"]{content:"hhWssO,bImzoM,hPgGU,"}/*!sc*/
+.ljKHqG{display:inline;}/*!sc*/
+data-styled.g43[id="sc-etsjJW"]{content:"ljKHqG,"}/*!sc*/
+.iNCOCX{position:relative;}/*!sc*/
+data-styled.g44[id="sc-fYmhhH"]{content:"iNCOCX,"}/*!sc*/
+.fdRrNy:hover>.sc-bbbBoY{opacity:1;}/*!sc*/
+data-styled.g49[id="sc-dClGHI"]{content:"fdRrNy,"}/*!sc*/
+.heMfrX{font-family:IBM Plex Sans,Roboto,sans-serif;font-size:13px;white-space:pre;contain:content;overflow-x:auto;}/*!sc*/
+.heMfrX .redoc-json code>.collapser{display:none;pointer-events:none;}/*!sc*/
+.heMfrX .callback-function{color:gray;}/*!sc*/
+.heMfrX .collapser:after{content:'-';cursor:pointer;}/*!sc*/
+.heMfrX .collapsed>.collapser:after{content:'+';cursor:pointer;}/*!sc*/
+.heMfrX .ellipsis:after{content:' … ';}/*!sc*/
+.heMfrX .collapsible{margin-left:2em;}/*!sc*/
+.heMfrX .hoverable{padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;border-radius:2px;}/*!sc*/
+.heMfrX .hovered{background-color:rgba(235, 238, 249, 1);}/*!sc*/
+.heMfrX .collapser{background-color:transparent;border:0;color:#fff;font-family:IBM Plex Sans,Roboto,sans-serif;font-size:13px;padding-right:6px;padding-left:6px;padding-top:0;padding-bottom:0;display:flex;align-items:center;justify-content:center;width:15px;height:15px;position:absolute;top:4px;left:-1.5em;cursor:default;user-select:none;-webkit-user-select:none;padding:2px;}/*!sc*/
+.heMfrX .collapser:focus{outline-color:#fff;outline-style:dotted;outline-width:1px;}/*!sc*/
+.heMfrX ul{list-style-type:none;padding:0px;margin:0px 0px 0px 26px;}/*!sc*/
+.heMfrX li{position:relative;display:block;}/*!sc*/
+.heMfrX .hoverable{display:inline-block;}/*!sc*/
+.heMfrX .selected{outline-style:solid;outline-width:1px;outline-style:dotted;}/*!sc*/
+.heMfrX .collapsed>.collapsible{display:none;}/*!sc*/
+.heMfrX .ellipsis{display:none;}/*!sc*/
+.heMfrX .collapsed>.ellipsis{display:inherit;}/*!sc*/
+data-styled.g50[id="sc-fhfEft"]{content:"heMfrX,"}/*!sc*/
+.eZCNZG{padding:0.9em;background-color:rgba(43,80,129,0.4);margin:0 0 10px 0;display:block;font-family:IBM Plex Sans,Roboto,sans-serif;font-size:0.929em;line-height:1.5em;}/*!sc*/
+data-styled.g51[id="sc-bAehkN"]{content:"eZCNZG,"}/*!sc*/
+.hpoWRV{font-family:IBM Plex Sans,Roboto,sans-serif;font-size:12px;position:absolute;z-index:1;top:-11px;left:12px;font-weight:600;color:rgba(255,255,255,0.7);}/*!sc*/
+data-styled.g52[id="sc-gahYZc"]{content:"hpoWRV,"}/*!sc*/
+.iLdyBp{position:relative;}/*!sc*/
+data-styled.g53[id="sc-bSFBcf"]{content:"iLdyBp,"}/*!sc*/
+.eKKwxo{margin-top:15px;}/*!sc*/
+data-styled.g56[id="sc-blIAwI"]{content:"eKKwxo,"}/*!sc*/
+.lhyyLL{vertical-align:middle;font-size:13px;line-height:20px;}/*!sc*/
+data-styled.g58[id="sc-bEjUoa"]{content:"lhyyLL,"}/*!sc*/
+.jYezsP{color:rgba(102,102,102,0.9);}/*!sc*/
+data-styled.g59[id="sc-boKDdR"]{content:"jYezsP,"}/*!sc*/
+.dbKJYq{color:#666;}/*!sc*/
+data-styled.g60[id="sc-fOOuSg"]{content:"dbKJYq,"}/*!sc*/
+.nwQTz{color:#666;word-break:break-word;}/*!sc*/
+data-styled.g61[id="sc-hdBJTi"]{content:"nwQTz,"}/*!sc*/
+.kKfffc{border-radius:2px;word-break:break-word;background-color:rgba(51,51,51,0.05);color:rgba(51,51,51,0.9);padding:0 5px;border:1px solid rgba(51,51,51,0.1);font-family:IBM Plex Sans,Roboto,sans-serif;}/*!sc*/
++{margin-left:0;}/*!sc*/
+data-styled.g66[id="sc-dTWiOz"]{content:"kKfffc,"}/*!sc*/
+.hPcPCj{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g92[id="sc-jCWzJg"]{content:"hPcPCj,"}/*!sc*/
+.hijBKj::before{content:'|';display:inline-block;opacity:0.5;width:15px;text-align:center;}/*!sc*/
+.hijBKj:last-child::after{display:none;}/*!sc*/
+data-styled.g94[id="sc-jVxTAy"]{content:"hijBKj,"}/*!sc*/
+.eAqtbt{overflow:hidden;}/*!sc*/
+data-styled.g95[id="sc-erPUmh"]{content:"eAqtbt,"}/*!sc*/
+.beOrEi{display:flex;flex-wrap:wrap;margin-left:-15px;}/*!sc*/
+data-styled.g96[id="sc-iRTMaw"]{content:"beOrEi,"}/*!sc*/
+.NmQLu{width:9ex;display:inline-block;height:13px;line-height:13px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
+.NmQLu.get{background-color:#2F8132;}/*!sc*/
+.NmQLu.post{background-color:#186FAF;}/*!sc*/
+.NmQLu.put{background-color:#95507c;}/*!sc*/
+.NmQLu.options{background-color:#947014;}/*!sc*/
+.NmQLu.patch{background-color:#bf581d;}/*!sc*/
+.NmQLu.delete{background-color:#cc3333;}/*!sc*/
+.NmQLu.basic{background-color:#707070;}/*!sc*/
+.NmQLu.link{background-color:#07818F;}/*!sc*/
+.NmQLu.head{background-color:#A23DAD;}/*!sc*/
+.NmQLu.hook{background-color:#32329f;}/*!sc*/
+.NmQLu.schema{background-color:#707070;}/*!sc*/
+data-styled.g100[id="sc-jxYSNo"]{content:"NmQLu,"}/*!sc*/
+.gAPKXX{margin:0;padding:0;}/*!sc*/
+.gAPKXX:first-child{padding-bottom:32px;}/*!sc*/
+.sc-zOxLx .sc-zOxLx{font-size:0.929em;}/*!sc*/
+.dQnkdy{margin:0;padding:0;display:none;}/*!sc*/
+.dQnkdy:first-child{padding-bottom:32px;}/*!sc*/
+.sc-zOxLx .sc-zOxLx{font-size:0.929em;}/*!sc*/
+data-styled.g101[id="sc-zOxLx"]{content:"gAPKXX,dQnkdy,"}/*!sc*/
+.gRNEoC{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;margin-top:15px;}/*!sc*/
+.ixknQI{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+data-styled.g102[id="sc-cgHfjM"]{content:"gRNEoC,ixknQI,"}/*!sc*/
+.dMZDaJ{cursor:pointer;color:#FFFFFF;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:IBM Plex Sans,Roboto,sans-serif;opacity:0.7;text-transform:uppercase;font-size:0.8em;padding-bottom:0;cursor:default;background-color:#1D3D68;}/*!sc*/
+.dMZDaJ .sc-dntSTA{height:1.5em;width:1.5em;}/*!sc*/
+.dMZDaJ .sc-dntSTA polygon{fill:#FFFFFF;}/*!sc*/
+.QpoVt{cursor:pointer;color:#FFFFFF;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:IBM Plex Sans,Roboto,sans-serif;font-size:0.929em;text-transform:none;background-color:#1D3D68;}/*!sc*/
+.QpoVt:hover{color:#FFFFFF;background-color:#122640;}/*!sc*/
+.QpoVt .sc-dntSTA{height:1.5em;width:1.5em;}/*!sc*/
+.QpoVt .sc-dntSTA polygon{fill:#FFFFFF;}/*!sc*/
+.bLdMVe{cursor:pointer;color:#FFFFFF;margin:0;padding:12.5px 20px;padding-left:40px;display:flex;justify-content:space-between;font-family:IBM Plex Sans,Roboto,sans-serif;background-color:#1D3D68;}/*!sc*/
+.bLdMVe:hover{color:#FFFFFF;background-color:#173154;}/*!sc*/
+.bLdMVe .sc-dntSTA{height:1.5em;width:1.5em;}/*!sc*/
+.bLdMVe .sc-dntSTA polygon{fill:#FFFFFF;}/*!sc*/
+.XCcJE{cursor:pointer;color:#FFFFFF;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:IBM Plex Sans,Roboto,sans-serif;background-color:#1D3D68;}/*!sc*/
+.XCcJE:hover{color:#FFFFFF;background-color:#173154;}/*!sc*/
+.XCcJE .sc-dntSTA{height:1.5em;width:1.5em;}/*!sc*/
+.XCcJE .sc-dntSTA polygon{fill:#FFFFFF;}/*!sc*/
+data-styled.g103[id="sc-fpikKz"]{content:"dMZDaJ,QpoVt,bLdMVe,XCcJE,"}/*!sc*/
+.cxcra{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g104[id="sc-gWaSiO"]{content:"cxcra,"}/*!sc*/
+.fJVdWS{font-size:0.8em;margin-top:10px;text-align:center;position:fixed;width:260px;bottom:0;background:#1D3D68;}/*!sc*/
+.fJVdWS a,.fJVdWS a:visited,.fJVdWS a:hover{color:#FFFFFF!important;padding:5px 0;border-top:1px solid #122640;text-decoration:none;display:flex;align-items:center;justify-content:center;}/*!sc*/
+.fJVdWS img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width: 50rem){.fJVdWS{width:100%;}}/*!sc*/
+data-styled.g105[id="sc-kSaXSp"]{content:"fJVdWS,"}/*!sc*/
+.jjnszm{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
+data-styled.g111[id="sc-eZSpzM"]{content:"jjnszm,"}/*!sc*/
+.dQcqpH{font-family:IBM Plex Sans,Roboto,sans-serif;margin-left:10px;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g112[id="sc-jvKoal"]{content:"dQcqpH,"}/*!sc*/
+.eTelsV{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#1e385b;display:flex;white-space:nowrap;align-items:center;border:1px solid transparent;border-bottom:0;transition:border-color 0.25s ease;}/*!sc*/
+.eTelsV ..sc-jvKoal{color:#ffffff;}/*!sc*/
+.eTelsV:focus{box-shadow:inset 0 2px 2px rgba(0, 0, 0, 0.45),0 2px 0 rgba(128, 128, 128, 0.25);}/*!sc*/
+data-styled.g113[id="sc-buTqWO"]{content:"eTelsV,"}/*!sc*/
+.chZhpo{font-size:0.929em;line-height:20px;background-color:#2F8132;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:IBM Plex Sans,Roboto,sans-serif;margin:0;}/*!sc*/
+data-styled.g114[id="sc-fQLpxn"]{content:"chZhpo,"}/*!sc*/
+.ga-DQLq{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0 0 6px rgba(0, 0, 0, 0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;transition:all 0.25s ease;visibility:hidden;transform:translateY(-50%) scaleY(0);}/*!sc*/
+data-styled.g115[id="sc-ecJghI"]{content:"ga-DQLq,"}/*!sc*/
+.icOxsG{padding:10px;}/*!sc*/
+data-styled.g116[id="sc-iyBeIh"]{content:"icOxsG,"}/*!sc*/
+.okJpy{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#32329f;}/*!sc*/
+.okJpy >span{color:#333333;}/*!sc*/
+data-styled.g117[id="sc-xKhEK"]{content:"okJpy,"}/*!sc*/
+.lkmdtA{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);}/*!sc*/
+.lkmdtA:focus{outline:auto #1d8127;}/*!sc*/
+data-styled.g120[id="sc-jIDBmd"]{content:"lkmdtA,"}/*!sc*/
+.dRTAry{padding:10px;}/*!sc*/
+data-styled.g121[id="sc-SpRCP"]{content:"dRTAry,"}/*!sc*/
+.fBhAXU{vertical-align:top;}/*!sc*/
+data-styled.g123[id="sc-eJvlPh"]{content:"fBhAXU,"}/*!sc*/
+.kjrVcG{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
+data-styled.g124[id="sc-gDzyrw"]{content:"kjrVcG,"}/*!sc*/
+.crXcHD{user-select:none;width:20px;height:20px;align-self:center;display:flex;flex-direction:column;color:#32329f;}/*!sc*/
+data-styled.g130[id="sc-cZnrqW"]{content:"crXcHD,"}/*!sc*/
+.dJYeEd{width:260px;background-color:#1D3D68;overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden;height:100vh;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width: 50rem){.dJYeEd{position:fixed;z-index:20;width:100%;background:#1D3D68;display:none;}}/*!sc*/
+@media print{.dJYeEd{display:none;}}/*!sc*/
+data-styled.g131[id="sc-fstJre"]{content:"dJYeEd,"}/*!sc*/
+.bovaLG{outline:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width: 50rem){.bovaLG{display:flex;}}/*!sc*/
+.bovaLG svg{color:#0065FB;}/*!sc*/
+@media print{.bovaLG{display:none;}}/*!sc*/
+data-styled.g132[id="sc-jOlHRD"]{content:"bovaLG,"}/*!sc*/
+.dOTMyV{font-family:IBM Plex Sans,Roboto,sans-serif;font-size:14px;font-weight:400;line-height:1.5em;color:#333333;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed!important;tap-highlight-color:rgba(0, 0, 0, 0);text-size-adjust:100%;}/*!sc*/
+.dOTMyV *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}/*!sc*/
+data-styled.g133[id="sc-Pgsbw"]{content:"dOTMyV,"}/*!sc*/
+.buanwU{z-index:1;position:relative;overflow:hidden;width:calc(100% - 260px);contain:layout;}/*!sc*/
+@media print,screen and (max-width: 50rem){.buanwU{width:100%;}}/*!sc*/
+data-styled.g134[id="sc-fkYqBV"]{content:"buanwU,"}/*!sc*/
+.bVaeie{background:#2B5081;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 260px) * 0.4);}/*!sc*/
+@media print,screen and (max-width: 75rem){.bVaeie{display:none;}}/*!sc*/
+data-styled.g135[id="sc-evkzZa"]{content:"bVaeie,"}/*!sc*/
+.gzMPIt{padding:5px 0;}/*!sc*/
+data-styled.g136[id="sc-iRcyzz"]{content:"gzMPIt,"}/*!sc*/
+.jgplBM{width:calc(100% - 40px);box-sizing:border-box;margin:0 20px;padding:5px 10px 5px 20px;border:0;border-bottom:1px solid #285490;font-family:IBM Plex Sans,Roboto,sans-serif;font-weight:bold;font-size:13px;color:#FFFFFF;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g137[id="sc-lhsSio"]{content:"jgplBM,"}/*!sc*/
+.jxyMNi{position:absolute;left:20px;height:1.8em;width:0.9em;}/*!sc*/
+.jxyMNi path{fill:#FFFFFF;}/*!sc*/
+data-styled.g138[id="sc-enPhjR"]{content:"jxyMNi,"}/*!sc*/
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  
+      <div id="redoc"><div class="sc-Pgsbw dOTMyV redoc-wrap"><div class="sc-fstJre dJYeEd menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-iRcyzz gzMPIt"><svg class="sc-enPhjR jxyMNi search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input placeholder="Search..." aria-label="Search" type="text" class="sc-lhsSio jgplBM search-input" value=""/></div><div class="sc-eknHtZ ghzOpX scrollbar-container undefined"><ul role="menu" class="sc-zOxLx gAPKXX"><li tabindex="0" depth="0" data-item-id="group/Introduction" role="menuitem" aria-label="Introduction" aria-expanded="true" class="sc-cgHfjM gRNEoC"><label class="sc-fpikKz dMZDaJ -depth0"><span width="calc(100% - 38px)" title="Introduction" class="sc-gWaSiO cxcra">Introduction</span></label><ul class="sc-zOxLx gAPKXX"><li tabindex="0" depth="1" data-item-id="tag/introduction" role="menuitem" aria-label="Introduction" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz QpoVt -depth1"><span width="calc(100% - 38px)" title="Introduction" class="sc-gWaSiO cxcra">Introduction</span><svg class="sc-dntSTA dUlzCe" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-zOxLx dQnkdy"><li tabindex="0" depth="2" data-item-id="tag/introduction/24metrics-Click-API" role="menuitem" aria-label="24metrics Click API" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz bLdMVe -depth2"><span width="calc(100% - 38px)" title="24metrics Click API" class="sc-gWaSiO cxcra">24metrics Click API</span><svg class="sc-dntSTA dUlzCe" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-zOxLx dQnkdy"><li tabindex="0" depth="3" data-item-id="tag/introduction/24metrics-Click-API/Quick-Start-Guide" role="menuitem" aria-label="Quick Start Guide" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz bLdMVe -depth3"><span width="calc(100% - 38px)" title="Quick Start Guide" class="sc-gWaSiO cxcra">Quick Start Guide</span></label></li></ul></li></ul></li><li tabindex="0" depth="1" data-item-id="tag/js_check_data" role="menuitem" aria-label="Sending Browser Data to our Backend Server" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz QpoVt -depth1"><span width="calc(100% - 38px)" title="Sending Browser Data to our Backend Server" class="sc-gWaSiO cxcra">Sending Browser Data to our Backend Server</span><svg class="sc-dntSTA dUlzCe" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-zOxLx dQnkdy"><li tabindex="0" depth="2" data-item-id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection" role="menuitem" aria-label="Browser Data for Enhanced Fraud Detection" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz bLdMVe -depth2"><span width="calc(100% - 38px)" title="Browser Data for Enhanced Fraud Detection" class="sc-gWaSiO cxcra">Browser Data for Enhanced Fraud Detection</span><svg class="sc-dntSTA dUlzCe" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-zOxLx dQnkdy"><li tabindex="0" depth="3" data-item-id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/JavaScript-Code" role="menuitem" aria-label="JavaScript Code" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz bLdMVe -depth3"><span width="calc(100% - 38px)" title="JavaScript Code" class="sc-gWaSiO cxcra">JavaScript Code</span></label></li><li tabindex="0" depth="3" data-item-id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/Summary" role="menuitem" aria-label="Summary" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz bLdMVe -depth3"><span width="calc(100% - 38px)" title="Summary" class="sc-gWaSiO cxcra">Summary</span></label></li></ul></li></ul></li></ul></li><li tabindex="0" depth="0" data-item-id="group/API-Endpoints" role="menuitem" aria-label="API Endpoints" aria-expanded="true" class="sc-cgHfjM gRNEoC"><label class="sc-fpikKz dMZDaJ -depth0"><span width="calc(100% - 38px)" title="API Endpoints" class="sc-gWaSiO cxcra">API Endpoints</span></label><ul class="sc-zOxLx gAPKXX"><li tabindex="0" depth="1" data-item-id="tag/Create-Click" role="menuitem" aria-label="Create Click" aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz QpoVt -depth1"><span width="calc(100% - 38px)" title="Create Click" class="sc-gWaSiO cxcra">Create Click</span><svg class="sc-dntSTA dUlzCe" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-zOxLx dQnkdy"><li tabindex="0" depth="2" data-item-id="tag/Create-Click/operation/createClick" role="menuitem" aria-label="Create a Click using the API." aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz XCcJE -depth2"><span type="get" class="sc-jxYSNo NmQLu operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-gWaSiO cxcra">Create a Click using the API.</span></label></li></ul></li></ul></li></ul><div class="sc-kSaXSp fJVdWS"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-jOlHRD bovaLG"><div class="sc-cZnrqW crXcHD"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg><svg class="" style="transform:translate(2px, 4px);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-fkYqBV buanwU api-content"><div class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU api-info"><h1 class="sc-hwkwBN sc-jCWzJg cBLmlW hPcPCj">24metrics Clicks API<!-- --> <span>(<!-- -->1<!-- -->)</span></h1><div class="sc-eVqvcJ sc-fszimp kIppRw hhWssO"><div class="sc-erPUmh eAqtbt"><div class="sc-iRTMaw beOrEi"> <span class="sc-jVxTAy hijBKj">URL: <a href="https://24metrics.com">https://24metrics.com</a></span> <!-- --> </div></div></div><div data-role="redoc-summary" html="" class="sc-eVqvcJ sc-fszimp kIppRw hhWssO"></div><div data-role="redoc-description" html="" class="sc-eVqvcJ sc-fszimp kIppRw hhWssO"></div></div></div></div><div id="tag/introduction" data-section-id="tag/introduction" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR kXfdCB"><a class="sc-kcLKEh fRdsOi" href="#tag/introduction" aria-label="tag/introduction"></a>Introduction</h2></div></div></div><div id="tag/introduction/24metrics-Click-API" data-section-id="tag/introduction/24metrics-Click-API" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR kXfdCB"><a class="sc-kcLKEh fRdsOi" href="#tag/introduction/24metrics-Click-API" aria-label="tag/introduction/24metrics-Click-API"></a>24metrics Click API</h2></div></div><div class="sc-ggWZvA dCzIPc"><div class="sc-eVqvcJ sc-fszimp kIppRw hhWssO redoc-markdown " html="&lt;p&gt;Welcome to the 24metrics Click API documentation. This API allows you to create and track clicks programmatically, particularly useful when our JavaScript SDK cannot be implemented.&lt;/p&gt;
+&lt;p&gt;24metrics provides advanced click fraud detection for your marketing campaigns, helping you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify and block fraudulent traffic&lt;/li&gt;
+&lt;li&gt;Get detailed analytics on your campaigns&lt;/li&gt;
+&lt;li&gt;Improve ROI by focusing on quality traffic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Our API is designed to be simple to integrate while providing powerful fraud detection capabilities.&lt;/p&gt;
+"><p>Welcome to the 24metrics Click API documentation. This API allows you to create and track clicks programmatically, particularly useful when our JavaScript SDK cannot be implemented.</p>
+<p>24metrics provides advanced click fraud detection for your marketing campaigns, helping you:</p>
+<ul>
+<li>Identify and block fraudulent traffic</li>
+<li>Get detailed analytics on your campaigns</li>
+<li>Improve ROI by focusing on quality traffic</li>
+</ul>
+<p>Our API is designed to be simple to integrate while providing powerful fraud detection capabilities.</p>
+</div></div></div><div id="tag/introduction/24metrics-Click-API/Quick-Start-Guide" data-section-id="tag/introduction/24metrics-Click-API/Quick-Start-Guide" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-dYwGCk hnmgNW"><a class="sc-kcLKEh fRdsOi" href="#tag/introduction/24metrics-Click-API/Quick-Start-Guide" aria-label="tag/introduction/24metrics-Click-API/Quick-Start-Guide"></a>Quick Start Guide</h2></div></div><div class="sc-ggWZvA dCzIPc"><div class="sc-eVqvcJ sc-fszimp kIppRw hhWssO redoc-markdown " html="&lt;p&gt;Getting started with the 24metrics API is straightforward:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Get your Integration ID&lt;/strong&gt; from your 24metrics dashboard.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create your first request&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;token string&quot;&gt;&quot;https://YOUR_INTEGRATION_ID.clicks.24metrics.com/?no_redirect=true&amp;amp;offer=campaign123&amp;amp;publisher=affiliate456&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;transaction_id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;01F3XYZ123ABC&quot;&lt;/span&gt;,
+  &lt;span class=&quot;token string&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;approved&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+"><p>Getting started with the 24metrics API is straightforward:</p>
+<ol>
+<li><strong>Get your Integration ID</strong> from your 24metrics dashboard.</li>
+<li><strong>Create your first request</strong>:</li>
+</ol>
+<pre><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-X</span> GET <span class="token string">"https://YOUR_INTEGRATION_ID.clicks.24metrics.com/?no_redirect=true&amp;offer=campaign123&amp;publisher=affiliate456"</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"transaction_id"</span><span class="token builtin class-name">:</span> <span class="token string">"01F3XYZ123ABC"</span>,
+  <span class="token string">"status"</span><span class="token builtin class-name">:</span> <span class="token string">"approved"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</div></div></div><div id="tag/js_check_data" data-section-id="tag/js_check_data" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR kXfdCB"><a class="sc-kcLKEh fRdsOi" href="#tag/js_check_data" aria-label="tag/js_check_data"></a>Sending Browser Data to our Backend Server</h2></div></div></div><div id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection" data-section-id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR kXfdCB"><a class="sc-kcLKEh fRdsOi" href="#tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection" aria-label="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection"></a>Browser Data for Enhanced Fraud Detection</h2></div></div><div class="sc-ggWZvA dCzIPc"><div class="sc-eVqvcJ sc-fszimp kIppRw hhWssO redoc-markdown " html="&lt;p&gt;With our JavaScript Integration from the Browser, we are able to get important information for enchanced fraud detection from the user&amp;#39;s browser such as fingerprint data, unique user id data, incongnito detection, bot detection, browser timezone and more.&lt;/p&gt;
+&lt;p&gt;If the API call is coming from a backend server, it is possible to pass the browser information to our endpoint by doing the following instructions here.&lt;/p&gt;
+"><p>With our JavaScript Integration from the Browser, we are able to get important information for enchanced fraud detection from the user&#39;s browser such as fingerprint data, unique user id data, incongnito detection, bot detection, browser timezone and more.</p>
+<p>If the API call is coming from a backend server, it is possible to pass the browser information to our endpoint by doing the following instructions here.</p>
+</div></div></div><div id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/JavaScript-Code" data-section-id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/JavaScript-Code" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-dYwGCk hnmgNW"><a class="sc-kcLKEh fRdsOi" href="#tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/JavaScript-Code" aria-label="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/JavaScript-Code"></a>JavaScript Code</h2></div></div><div class="sc-ggWZvA dCzIPc"><div class="sc-eVqvcJ sc-fszimp kIppRw hhWssO redoc-markdown " html="&lt;p&gt;You have to add our JavaScript data generator code in to your web app or web page code to add its generated data to the click event sent to your backend server. This is an example how our function can be used to generate the data from an HTML page.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;script src&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;https://cdn.24metrics.com/lib/index.js&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  jsData &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ASP&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get24metricsData&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;jsData&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// send this data to your backend server&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, you must pass this data to our endpoint in the &lt;code&gt;js_check_data&lt;/code&gt; query parameter.&lt;/p&gt;
+&lt;p&gt;Here is a &lt;code&gt;curl&lt;/code&gt; representation of the API call that must be executed:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;token string&quot;&gt;&quot;https://YOUR_INTEGRATION_ID.clicks.24metrics.com/?no_redirect=true&amp;amp;offer=campaign123&amp;amp;publisher=affiliate456&amp;amp;js_check_data=JS_CHECK_DATA&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;transaction_id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;01F3XYZ123ABC&quot;&lt;/span&gt;,
+  &lt;span class=&quot;token string&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;approved&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+"><p>You have to add our JavaScript data generator code in to your web app or web page code to add its generated data to the click event sent to your backend server. This is an example how our function can be used to generate the data from an HTML page.</p>
+<pre><code class="language-javascript"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://cdn.24metrics.com/lib/index.js"</span><span class="token operator">></span>
+  jsData <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token constant">ASP</span><span class="token punctuation">.</span><span class="token function">get24metricsData</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>jsData<span class="token punctuation">)</span> <span class="token comment">// send this data to your backend server</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</code></pre>
+<p>Then, you must pass this data to our endpoint in the <code>js_check_data</code> query parameter.</p>
+<p>Here is a <code>curl</code> representation of the API call that must be executed:</p>
+<pre><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-X</span> GET <span class="token string">"https://YOUR_INTEGRATION_ID.clicks.24metrics.com/?no_redirect=true&amp;offer=campaign123&amp;publisher=affiliate456&amp;js_check_data=JS_CHECK_DATA"</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"transaction_id"</span><span class="token builtin class-name">:</span> <span class="token string">"01F3XYZ123ABC"</span>,
+  <span class="token string">"status"</span><span class="token builtin class-name">:</span> <span class="token string">"approved"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</div></div></div><div id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/Summary" data-section-id="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/Summary" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-dYwGCk hnmgNW"><a class="sc-kcLKEh fRdsOi" href="#tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/Summary" aria-label="tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/Summary"></a>Summary</h2></div></div><div class="sc-ggWZvA dCzIPc"><div class="sc-eVqvcJ sc-fszimp kIppRw hhWssO redoc-markdown " html="&lt;ul&gt;
+&lt;li&gt;The JavaScript code is used and collects browser data.&lt;/li&gt;
+&lt;li&gt;Your server receives this data from the browser.&lt;/li&gt;
+&lt;li&gt;Your server forwards the data to 24metrics using the &lt;code&gt;js_check_data&lt;/code&gt; parameter.&lt;/li&gt;
+&lt;/ul&gt;
+"><ul>
+<li>The JavaScript code is used and collects browser data.</li>
+<li>Your server receives this data from the browser.</li>
+<li>Your server forwards the data to 24metrics using the <code>js_check_data</code> parameter.</li>
+</ul>
+</div></div></div><div id="tag/Create-Click" data-section-id="tag/Create-Click" class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR kXfdCB"><a class="sc-kcLKEh fRdsOi" href="#tag/Create-Click" aria-label="tag/Create-Click"></a>Create Click</h2></div></div><div class="sc-ggWZvA dCzIPc"><div class="sc-eVqvcJ sc-fszimp kIppRw hhWssO redoc-markdown " html="&lt;p&gt;Create a click using the API. This is useful for integrations that do not support the 24metrics JS SDK.&lt;/p&gt;
+"><p>Create a click using the API. This is useful for integrations that do not support the 24metrics JS SDK.</p>
+</div></div></div><div id="tag/Create-Click/operation/createClick" data-section-id="tag/Create-Click/operation/createClick" class="sc-dTvVRJ gHrCVQ"><div data-section-id="operation/createClick" id="operation/createClick" class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR kXfdCB"><a class="sc-kcLKEh fRdsOi" href="#tag/Create-Click/operation/createClick" aria-label="tag/Create-Click/operation/createClick"></a>Create a Click using the API.<!-- --> </h2><div><h5 class="sc-eqYatC czjApA">path<!-- --> Parameters</h5><table class="sc-eqNDNG icJLQx"><tbody><tr class="last "><td kind="field" title="integration" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">integration</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span></div> <div><div html="&lt;p&gt;The integration ID.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The integration ID.</p>
+</div></div></div></td></tr></tbody></table></div><div><h5 class="sc-eqYatC czjApA">query<!-- --> Parameters</h5><table class="sc-eqNDNG icJLQx"><tbody><tr class=""><td kind="field" title="click_ip" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">click_ip</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->ClickIP<!-- -->) </span></div> <div><div html="&lt;p&gt;The real of ip of the user that made the click. By default, the server request IP is used.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The real of ip of the user that made the click. By default, the server request IP is used.</p>
+</div></div></div></td></tr><tr class=""><td kind="field" title="offer" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">offer</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->Offer<!-- -->) </span></div> <div><div html="&lt;p&gt;The offer or campaign identifier. E.g. the value of utm_campaign&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The offer or campaign identifier. E.g. the value of utm_campaign</p>
+</div></div></div></td></tr><tr class=""><td kind="field" title="advertiser" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">advertiser</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->Advertiser<!-- -->) </span></div> <div><div html="&lt;p&gt;The advertiser identifier. E.g. the value of utm_medium&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The advertiser identifier. E.g. the value of utm_medium</p>
+</div></div></div></td></tr><tr class=""><td kind="field" title="publisher" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">publisher</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->Publisher<!-- -->) </span></div> <div><div html="&lt;p&gt;The affiliate identifier. E.g. the value of utm_source&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The affiliate identifier. E.g. the value of utm_source</p>
+</div></div></div></td></tr><tr class=""><td kind="field" title="sub_id" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">sub_id</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->SubID<!-- -->) </span></div> <div><div html="&lt;p&gt;The affiliate sub ID source.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The affiliate sub ID source.</p>
+</div></div></div></td></tr><tr class=""><td kind="field" title="user_agent" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">user_agent</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->UserAgent<!-- -->) </span></div> <div><div html="&lt;p&gt;The browser&amp;#39;s user agent. This is taken from the HTTP headers by default.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The browser&#39;s user agent. This is taken from the HTTP headers by default.</p>
+</div></div></div></td></tr><tr class=""><td kind="field" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name"></span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->Referer<!-- -->) </span></div> <div><div html="&lt;p&gt;The Referer URL of the click.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The Referer URL of the click.</p>
+</div></div></div></td></tr><tr class=""><td kind="field" title="keyword" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">keyword</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span><span class="sc-bEjUoa sc-hdBJTi lhyyLL nwQTz"> (<!-- -->Keyword<!-- -->) </span></div> <div><div html="&lt;p&gt;For search campaigns. E.g. the value of utm_term&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>For search campaigns. E.g. the value of utm_term</p>
+</div></div></div></td></tr><tr class="last "><td kind="field" title="js_check_data" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">js_check_data</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">any</span></div> <div><div html="&lt;p&gt;In base64 format. The output of the 24metrics JS SDK code &lt;code&gt;ASP.get24metricsData()&lt;/code&gt; function. It provides important information for enhanced fraud detection. See &lt;a href=&quot;#tag/js_check_data&quot;&gt;How to Send Browser Data&lt;/a&gt;.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>In base64 format. The output of the 24metrics JS SDK code <code>ASP.get24metricsData()</code> function. It provides important information for enhanced fraud detection. See <a href="#tag/js_check_data">How to Send Browser Data</a>.</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-gDzyrw kjrVcG">Responses</h3><div><button class="sc-jIDBmd lkmdtA" aria-expanded="true"><svg class="sc-dntSTA hMrBOK" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-eJvlPh fBhAXU">200<!-- --> </strong><div html="&lt;p&gt;results&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp sc-etsjJW kIppRw hPgGU ljKHqG"><p>results</p>
+</div></button><div class="sc-SpRCP dRTAry"><h5 class="sc-eqYatC czjApA">Response Schema: <span class="sc-dNFkOE cFlAeY">application/json</span></h5><table class="sc-eqNDNG icJLQx"><tbody><tr class=""><td kind="field" title="transaction_id" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">transaction_id</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span></div> <div><div html="&lt;p&gt;The click transaction id. You can use this to query the click from the Reports.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The click transaction id. You can use this to query the click from the Reports.</p>
+</div></div></div></td></tr><tr class=""><td kind="field" title="status" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">status</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span></div><div><span class="sc-bEjUoa lhyyLL"> <!-- -->Enum<!-- -->:</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;rejected&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;approved&quot;</span> </div> <div><div html="&lt;p&gt;The status of the click according to filtering status.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>The status of the click according to filtering status.</p>
+</div></div></div></td></tr><tr class="last "><td kind="field" title="reason" class="sc-kCuUfV sc-fbQrwq gdmNWp UNvwF"><span class="sc-hwddKA gGDjdI"></span><span class="property-name">reason</span></td><td class="sc-gGKoUb ixGaBD"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL jYezsP"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL dbKJYq">string</span></div><div><span class="sc-bEjUoa lhyyLL"> <!-- -->Enum<!-- -->:</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;BOT&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;SUB_ID_VALIDITY_CHECK&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;DEVICE_ID&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;DUPLICATE_IP&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;DUPLICATE_UUID&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;DUPLICATE_FINGERPRINT&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;DUPLICATE_USER&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;VPN&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;REFERER&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;DUPLICATE_CLICK&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;DUPLICATE_DEVICE_ID&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;ISP&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;LANGUAGE&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;PARAMETER&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;GEO&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;IP_RANGE&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;CLICK_CAPPING&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;OLD_OS&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;OLD_BROWSER&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;KEYWORD&quot;</span> <span class="sc-bEjUoa sc-dTWiOz lhyyLL kKfffc">&quot;CLICK_FLOODING&quot;</span> </div> <div><div html="&lt;p&gt;If the click is rejected. This is the primary reason why. Please note that the reasons from the Reports Pages are renamed for humans.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>If the click is rejected. This is the primary reason why. Please note that the reasons from the Reports Pages are renamed for humans.</p>
+</div></div></div></td></tr></tbody></table></div></div></div></div><div class="sc-jwTyAe sc-hjsuWn htRtDH gBnQhp"><div class="sc-eZSpzM jjnszm"><button class="sc-buTqWO eTelsV"><span type="get" class="sc-fQLpxn chZhpo http-verb get">get</span><span class="sc-jvKoal dQcqpH">?no_redirect=true</span><svg class="sc-dntSTA iuNpUs" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-ecJghI ga-DQLq"><div class="sc-iyBeIh icOxsG"><div html="&lt;p&gt;Replace the {integration_id} accordingly&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw bImzoM"><p>Replace the {integration_id} accordingly</p>
+</div><div tabindex="0" role="button"><div class="sc-xKhEK okJpy"><span>https://REPLACE_INTEGRATION_ID.clicks.24metrics.com</span>?no_redirect=true</div></div></div></div></div><div><h3 class="sc-lgpSej drJHMo"> <!-- -->Response samples<!-- --> </h3><div class="sc-cOpnSz DhkSG" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="tab«R177da»0" aria-selected="true" aria-disabled="false" aria-controls="panel«R177da»0" tabindex="0" data-rttab="true">200</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="panel«R177da»0" aria-labelledby="tab«R177da»0"><div><div class="sc-bSFBcf iLdyBp"><span class="sc-gahYZc hpoWRV">Content type</span><div class="sc-bAehkN eZCNZG">application/json</div></div><div class="sc-blIAwI eKKwxo"><div class="sc-dClGHI fdRrNy"><div class="sc-bbbBoY iUroIg"><button><div class="sc-fYmhhH iNCOCX">Copy</div></button></div><div tabindex="0" class="sc-eVqvcJ kIppRw sc-fhfEft heMfrX"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"transaction_id"</span>: <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"status"</span>: <span class="token string">&quot;rejected&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"reason"</span>: <span class="token string">&quot;BOT&quot;</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div></div></div></div></div></div></div><div class="sc-evkzZa bVaeie"></div></div></div>
+      <script>
+      const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.0.3","info":{"version":"1","title":"24metrics Clicks API","contact":{"url":"https://24metrics.com"}},"x-tagGroups":[{"name":"Introduction","tags":["introduction","js_check_data"]},{"name":"API Endpoints","tags":["Create Click"]}],"tags":[{"name":"introduction","x-displayName":"Introduction","description":"# 24metrics Click API\n\nWelcome to the 24metrics Click API documentation. This API allows you to create and track clicks programmatically, particularly useful when our JavaScript SDK cannot be implemented.\n\n24metrics provides advanced click fraud detection for your marketing campaigns, helping you:\n\n- Identify and block fraudulent traffic\n- Get detailed analytics on your campaigns\n- Improve ROI by focusing on quality traffic\n\nOur API is designed to be simple to integrate while providing powerful fraud detection capabilities.\n\n## Quick Start Guide\n\nGetting started with the 24metrics API is straightforward:\n\n1. **Get your Integration ID** from your 24metrics dashboard.\n2. **Create your first request**:\n\n```bash\ncurl -X GET \"https://YOUR_INTEGRATION_ID.clicks.24metrics.com/?no_redirect=true&offer=campaign123&publisher=affiliate456\"\n{\n  \"transaction_id\": \"01F3XYZ123ABC\",\n  \"status\": \"approved\"\n}\n```"},{"name":"js_check_data","x-displayName":"Sending Browser Data to our Backend Server","description":"# Browser Data for Enhanced Fraud Detection\n\nWith our JavaScript Integration from the Browser, we are able to get important information for enchanced fraud detection from the user's browser such as fingerprint data, unique user id data, incongnito detection, bot detection, browser timezone and more.\n\nIf the API call is coming from a backend server, it is possible to pass the browser information to our endpoint by doing the following instructions here.\n\n## JavaScript Code\n\nYou have to add our JavaScript data generator code in to your web app or web page code to add its generated data to the click event sent to your backend server. This is an example how our function can be used to generate the data from an HTML page.\n\n```javascript\n<script src=\"https://cdn.24metrics.com/lib/index.js\">\n  jsData = await ASP.get24metricsData()\n  console.log(jsData) // send this data to your backend server\n<\/script>\n```\n\nThen, you must pass this data to our endpoint in the `js_check_data` query parameter.\n\nHere is a `curl` representation of the API call that must be executed:\n\n```bash\ncurl -X GET \"https://YOUR_INTEGRATION_ID.clicks.24metrics.com/?no_redirect=true&offer=campaign123&publisher=affiliate456&js_check_data=JS_CHECK_DATA\"\n{\n  \"transaction_id\": \"01F3XYZ123ABC\",\n  \"status\": \"approved\"\n}\n```\n\n## Summary\n\n- The JavaScript code is used and collects browser data.\n- Your server receives this data from the browser.\n- Your server forwards the data to 24metrics using the `js_check_data` parameter.\n"},{"name":"Create Click","description":"Create a click using the API. This is useful for integrations that do not support the 24metrics JS SDK.\n"}],"paths":{"?no_redirect=true":{"get":{"summary":"Create a Click using the API.","operationId":"createClick","servers":[{"url":"https://REPLACE_INTEGRATION_ID.clicks.24metrics.com","description":"Replace the {integration_id} accordingly"}],"tags":["Create Click"],"parameters":[{"$ref":"#/components/parameters/PathIntegration"},{"$ref":"#/components/parameters/QueryClickIP"},{"$ref":"#/components/parameters/QueryOffer"},{"$ref":"#/components/parameters/QueryAdvertiser"},{"$ref":"#/components/parameters/QueryPublisher"},{"$ref":"#/components/parameters/QuerySubID"},{"$ref":"#/components/parameters/QueryUserAgent"},{"$ref":"#/components/parameters/QueryReferer"},{"$ref":"#/components/parameters/QueryKeyword"},{"$ref":"#/components/parameters/QueryJSCheckData"}],"responses":{"200":{"description":"results","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ClickNoRedirectResponse"}}}}}}}},"components":{"parameters":{"PathIntegration":{"name":"integration","in":"path","description":"The integration ID.","schema":{"type":"string"}},"QueryClickIP":{"name":"click_ip","in":"query","schema":{"$ref":"#/components/schemas/ClickIP"}},"QueryKeyword":{"name":"keyword","in":"query","schema":{"$ref":"#/components/schemas/Keyword"}},"name":"referer","QueryReferer":{"in":"query","schema":{"$ref":"#/components/schemas/Referer"}},"QueryUserAgent":{"name":"user_agent","in":"query","schema":{"$ref":"#/components/schemas/UserAgent"}},"QueryJSCheckData":{"name":"js_check_data","in":"query","description":"In base64 format. The output of the 24metrics JS SDK code `ASP.get24metricsData()` function. It provides important information for enhanced fraud detection. See [How to Send Browser Data](#tag/js_check_data)."},"QueryAdvertiser":{"name":"advertiser","in":"query","schema":{"$ref":"#/components/schemas/Advertiser"}},"QueryPublisher":{"name":"publisher","in":"query","schema":{"$ref":"#/components/schemas/Publisher"}},"QueryOffer":{"name":"offer","in":"query","schema":{"$ref":"#/components/schemas/Offer"}},"QuerySubID":{"name":"sub_id","in":"query","schema":{"$ref":"#/components/schemas/SubID"}},"QueryDeviceID":{"name":"device_id","in":"query","schema":{"$ref":"#/components/schemas/DeviceID"}},"QueryExternalTxID":{"name":"external_transaction_id","in":"query","schema":{"$ref":"#/components/schemas/ExternalTxID"}},"QueryClickTime":{"name":"click_time","in":"query","schema":{"type":"number","description":"The click time in UTC UNIX time format. If not passed, the current time in UTC is used."}}},"schemas":{"UserAgent":{"type":"string","description":"The browser's user agent. This is taken from the HTTP headers by default."},"ProxyType":{"type":"string","description":"The user's IP proxy category.","enum":["NotProxy","VPN","TOR","DataCenterHostingProvider","SearchEngineBot","PublicProxy","WebProxy","ResidentialProxy"]},"Date":{"type":"string","pattern":"YYYY-MM-DD"},"DateYear":{"type":"string","pattern":"YYYY"},"DateTime":{"type":"string","pattern":"YYYY-MM-DD hh:mm:ss"},"ClickIP":{"type":"string","description":"The real of ip of the user that made the click. By default, the server request IP is used."},"Offer":{"type":"string","description":"The offer or campaign identifier. E.g. the value of utm_campaign"},"Advertiser":{"type":"string","description":"The advertiser identifier. E.g. the value of utm_medium"},"Publisher":{"type":"string","description":"The affiliate identifier. E.g. the value of utm_source"},"SubID":{"type":"string","description":"The affiliate sub ID source."},"Keyword":{"type":"string","description":"For search campaigns. E.g. the value of utm_term"},"Referer":{"type":"string","description":"The Referer URL of the click."},"OrganizationID":{"type":"string","description":"The 24metrics organization id."},"IntegrationID":{"type":"string","description":"The 24metrics integration id."},"DeviceID":{"type":"string","description":"The user device id."},"ClickNoRedirectResponse":{"type":"object","properties":{"transaction_id":{"type":"string","description":"The click transaction id. You can use this to query the click from the Reports."},"status":{"type":"string","description":"The status of the click according to filtering status.","enum":["rejected","approved"]},"reason":{"description":"If the click is rejected. This is the primary reason why. Please note that the reasons from the Reports Pages are renamed for humans.","type":"string","enum":["BOT","SUB_ID_VALIDITY_CHECK","DEVICE_ID","DUPLICATE_IP","DUPLICATE_UUID","DUPLICATE_FINGERPRINT","DUPLICATE_USER","VPN","REFERER","DUPLICATE_CLICK","DUPLICATE_DEVICE_ID","ISP","LANGUAGE","PARAMETER","GEO","IP_RANGE","CLICK_CAPPING","OLD_OS","OLD_BROWSER","KEYWORD","CLICK_FLOODING"]}}},"FullClickResponse":{"allOf":[{"type":"object","properties":{"tx_id":{"type":"string","description":"The click transaction id in ULID format."},"ip":{"$ref":"#/components/schemas/ClickIP"},"country":{"type":"string","description":"The click's IP country based on the IP."},"city":{"type":"string","description":"The click's IP city based on the IP."},"lat":{"type":"number","format":"float","description":"The click's IP latitude coordinates based on the IP."},"long":{"type":"number","format":"float","description":"The click's IP longitude coordinates based on the IP."},"postal_code":{"type":"string","description":"The click's IP postal code based on the IP."},"isp":{"type":"string","description":"The click's IP Internet service provider based on the IP."},"referer_categories":{"type":"array","description":"The category of the `referer` domain or url.","items":{"type":"string"}},"proxy_type":{"$ref":"#/components/schemas/ProxyType"},"user_agent":{"type":"string","description":"The user agent from the HTTP request parameter or HTTP request header."},"device_id":{"$ref":"#/components/schemas/DeviceID"},"is_bot":{"type":"number","description":"If the user_agent is considered a bot the value is `1`, if not, the value is `0`."},"os_name":{"type":"string","description":"The operating system used by the user."},"os_version":{"description":"The version of `os_name`.","type":"string"},"is_old_os":{"type":"number","description":"If the os_version is considered old according to OLD_DEVICES filter the value is `1`, if not, the value is `0`."},"device_type":{"type":"string","description":"The user device type."},"browser_name":{"type":"string","description":"The browser used by the user."},"browser_version":{"type":"string","description":"The browser version of the `browser_name`."},"is_old_browser":{"type":"number","description":"If the browser_version is considered old according to OLD_DEVICES filter the value is `1`, if not, the value is `0`."},"browser_languages":{"type":"array","description":"The user's browser language settings.","items":{"type":"string"}},"offer_id":{"$ref":"#/components/schemas/Offer"},"advertiser":{"$ref":"#/components/schemas/Advertiser"},"publisher":{"$ref":"#/components/schemas/Publisher"},"sub_id":{"$ref":"#/components/schemas/SubID"},"keyword":{"$ref":"#/components/schemas/Keyword"},"referer":{"$ref":"#/components/schemas/Referer"},"organization_id":{"$ref":"#/components/schemas/OrganizationID"},"integration_id":{"$ref":"#/components/schemas/IntegrationID"},"filter_group_id":{"type":"string","description":"The 24metrics filter group that is used."},"rejected":{"type":"number","enum":[0,1],"description":"`0` or `1`. This indicates that the user is rejected because of a filter."},"rejections":{"type":"array","description":"The list of filters that shows why the user was `rejected`."},"rejected_primary_reason":{"type":"string","description":"The filter with the highest ranking from `rejections`."},"request_time":{"$ref":"#/components/schemas/DateTime"},"external_transaction_id":{"type":"string","description":"If the source of the click is coming from an affiliate tracking platform, pass the transaction ID here."},"extra_parameters":{"type":"object","description":"HTTP request parameters that 24metrics does not recognize.","properties":{"parameter_name":{"type":"string"},"parameter_value":{"type":"string"}}}}}]}}}}},"searchIndex":{"store":["tag/introduction","tag/introduction/24metrics-Click-API","tag/introduction/24metrics-Click-API/Quick-Start-Guide","tag/js_check_data","tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection","tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/JavaScript-Code","tag/js_check_data/Browser-Data-for-Enhanced-Fraud-Detection/Summary","tag/Create-Click","tag/Create-Click/operation/createClick"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,2.59]],["description/0",[]],["title/1",[1,0.589,2,0.424,3,0.283]],["description/1",[1,0.622,2,0.544,3,0.363,4,1.293,5,1.293,6,1.293,7,0.408,8,1.293,9,1.293,10,1.293,11,0.408,12,0.408,13,0.945,14,1.293,15,1.975,16,1.293,17,1.093,18,1.093,19,1.293,20,1.975,21,1.293,22,1.008,23,1.293,24,1.293,25,1.293,26,1.975,27,1.293,28,1.293,29,1.293,30,1.293,31,1.293,32,1.293,33,1.293,34,1.293,35,0.544,36,1.293,37,1.293]],["title/2",[38,1.868,39,1.365,40,1.868]],["description/2",[1,0.801,3,0.277,7,0.576,22,1.23,35,0.769,39,1.336,41,1.828,42,1.828,43,1.828,44,1.336,45,1.828,46,1.828,47,1.828,48,1.828,49,1.336,50,1.336,51,1.336,52,1.828,53,1.336,54,1.336,55,1.336,56,1.336]],["title/3",[57,1.067,58,0.615,59,0.46,60,0.808,61,0.615]],["description/3",[]],["title/4",[17,0.808,18,0.808,58,0.615,59,0.46,62,1.461]],["description/4",[3,0.227,12,0.471,17,0.827,18,1.445,35,0.629,44,1.092,58,1.213,59,0.693,60,0.827,61,0.629,63,1.494,64,2.2,65,1.494,66,1.494,67,1.494,68,1.494,69,1.494,70,1.494,71,1.494,72,1.494,73,1.494,74,1.494,75,1.092,76,1.494,77,1.494,78,1.092,79,1.092,80,1.494,81,1.494,82,1.494,83,1.092]],["title/5",[12,0.684,84,1.201]],["description/5",[2,0.251,3,0.168,11,0.348,12,0.551,22,1.201,49,0.807,50,1.277,51,0.807,53,0.807,54,0.807,55,0.807,56,0.807,57,0.807,59,0.846,60,0.967,61,0.735,75,0.807,78,0.807,79,0.807,83,0.807,84,0.967,85,1.747,86,2.167,87,1.747,88,1.105,89,1.747,90,1.105,91,1.105,92,1.105,93,1.105,94,1.105,95,1.747,96,1.105,97,1.105,98,1.105,99,1.105,100,1.105,101,0.807,102,1.105,103,0.807,104,1.105,105,1.105,106,1.105]],["title/6",[107,2.59]],["description/6",[1,0.63,11,0.852,12,0.63,22,1.29,58,1.138,59,0.966,61,1.138,84,1.107,101,1.462,103,1.462,108,2,109,2,110,2]],["title/7",[2,0.493,7,0.684]],["description/7",[1,0.777,2,0.56,3,0.374,7,0.777,11,0.977,13,1.801,35,1.038,111,2.465,112,2.465]],["title/8",[2,0.372,3,0.249,7,0.517,11,0.517]],["description/8",[113,3.116]]],"invertedIndex":[["",{"_index":22,"title":{},"description":{"1":{},"2":{},"5":{},"6":{}}}],["01f3xyz123abc",{"_index":54,"title":{},"description":{"2":{},"5":{}}}],["1",{"_index":43,"title":{},"description":{"2":{}}}],["2",{"_index":46,"title":{},"description":{"2":{}}}],["24metric",{"_index":1,"title":{"1":{}},"description":{"1":{},"2":{},"6":{},"7":{}}}],["add",{"_index":85,"title":{},"description":{"5":{}}}],["advanc",{"_index":16,"title":{},"description":{"1":{}}}],["allow",{"_index":6,"title":{},"description":{"1":{}}}],["analyt",{"_index":28,"title":{},"description":{"1":{}}}],["api",{"_index":3,"title":{"1":{},"8":{}},"description":{"1":{},"2":{},"4":{},"5":{},"7":{}}}],["app",{"_index":88,"title":{},"description":{"5":{}}}],["approv",{"_index":56,"title":{},"description":{"2":{},"5":{}}}],["asp.get24metricsdata",{"_index":99,"title":{},"description":{"5":{}}}],["await",{"_index":98,"title":{},"description":{"5":{}}}],["backend",{"_index":60,"title":{"3":{}},"description":{"4":{},"5":{}}}],["bash",{"_index":49,"title":{},"description":{"2":{},"5":{}}}],["block",{"_index":24,"title":{},"description":{"1":{}}}],["bot",{"_index":72,"title":{},"description":{"4":{}}}],["browser",{"_index":58,"title":{"3":{},"4":{}},"description":{"4":{},"6":{}}}],["call",{"_index":75,"title":{},"description":{"4":{},"5":{}}}],["campaign",{"_index":20,"title":{},"description":{"1":{}}}],["capabl",{"_index":37,"title":{},"description":{"1":{}}}],["click",{"_index":2,"title":{"1":{},"7":{},"8":{}},"description":{"1":{},"5":{},"7":{}}}],["code",{"_index":84,"title":{"5":{}},"description":{"5":{},"6":{}}}],["collect",{"_index":108,"title":{},"description":{"6":{}}}],["come",{"_index":76,"title":{},"description":{"4":{}}}],["console.log(jsdata",{"_index":100,"title":{},"description":{"5":{}}}],["creat",{"_index":7,"title":{"7":{},"8":{}},"description":{"1":{},"2":{},"7":{}}}],["curl",{"_index":50,"title":{},"description":{"2":{},"5":{}}}],["dashboard",{"_index":45,"title":{},"description":{"2":{}}}],["data",{"_index":59,"title":{"3":{},"4":{}},"description":{"4":{},"5":{},"6":{}}}],["design",{"_index":33,"title":{},"description":{"1":{}}}],["detail",{"_index":27,"title":{},"description":{"1":{}}}],["detect",{"_index":18,"title":{"4":{}},"description":{"1":{},"4":{}}}],["do",{"_index":80,"title":{},"description":{"4":{}}}],["document",{"_index":5,"title":{},"description":{"1":{}}}],["enchanc",{"_index":65,"title":{},"description":{"4":{}}}],["endpoint",{"_index":79,"title":{},"description":{"4":{},"5":{}}}],["enhanc",{"_index":62,"title":{"4":{}},"description":{}}],["event",{"_index":90,"title":{},"description":{"5":{}}}],["exampl",{"_index":92,"title":{},"description":{"5":{}}}],["execut",{"_index":105,"title":{},"description":{"5":{}}}],["fingerprint",{"_index":68,"title":{},"description":{"4":{}}}],["first",{"_index":47,"title":{},"description":{"2":{}}}],["focus",{"_index":31,"title":{},"description":{"1":{}}}],["follow",{"_index":81,"title":{},"description":{"4":{}}}],["forward",{"_index":110,"title":{},"description":{"6":{}}}],["fraud",{"_index":17,"title":{"4":{}},"description":{"1":{},"4":{}}}],["fraudul",{"_index":25,"title":{},"description":{"1":{}}}],["function",{"_index":93,"title":{},"description":{"5":{}}}],["gener",{"_index":86,"title":{},"description":{"5":{}}}],["get",{"_index":41,"title":{},"description":{"2":{}}}],["guid",{"_index":40,"title":{"2":{}},"description":{}}],["help",{"_index":21,"title":{},"description":{"1":{}}}],["here",{"_index":83,"title":{},"description":{"4":{},"5":{}}}],["html",{"_index":94,"title":{},"description":{"5":{}}}],["https://your_integration_id.clicks.24metrics.com/?no_redirect=true&offer=campaign123&publisher=affiliate456",{"_index":52,"title":{},"description":{"2":{}}}],["https://your_integration_id.clicks.24metrics.com/?no_redirect=true&offer=campaign123&publisher=affiliate456&js_check_data=js_check_data",{"_index":106,"title":{},"description":{"5":{}}}],["id",{"_index":44,"title":{},"description":{"2":{},"4":{}}}],["identifi",{"_index":23,"title":{},"description":{"1":{}}}],["implement",{"_index":14,"title":{},"description":{"1":{}}}],["import",{"_index":63,"title":{},"description":{"4":{}}}],["improv",{"_index":29,"title":{},"description":{"1":{}}}],["incongnito",{"_index":71,"title":{},"description":{"4":{}}}],["inform",{"_index":64,"title":{},"description":{"4":{}}}],["instruct",{"_index":82,"title":{},"description":{"4":{}}}],["integr",{"_index":35,"title":{},"description":{"1":{},"2":{},"4":{},"7":{}}}],["introduct",{"_index":0,"title":{"0":{}},"description":{}}],["javascript",{"_index":12,"title":{"5":{}},"description":{"1":{},"4":{},"5":{},"6":{}}}],["js",{"_index":112,"title":{},"description":{"7":{}}}],["js_check_data",{"_index":101,"title":{},"description":{"5":{},"6":{}}}],["jsdata",{"_index":97,"title":{},"description":{"5":{}}}],["market",{"_index":19,"title":{},"description":{"1":{}}}],["more",{"_index":74,"title":{},"description":{"4":{}}}],["no_redirect=tru",{"_index":113,"title":{},"description":{"8":{}}}],["page",{"_index":89,"title":{},"description":{"5":{}}}],["paramet",{"_index":103,"title":{},"description":{"5":{},"6":{}}}],["particularli",{"_index":10,"title":{},"description":{"1":{}}}],["pass",{"_index":78,"title":{},"description":{"4":{},"5":{}}}],["possibl",{"_index":77,"title":{},"description":{"4":{}}}],["power",{"_index":36,"title":{},"description":{"1":{}}}],["programmat",{"_index":9,"title":{},"description":{"1":{}}}],["provid",{"_index":15,"title":{},"description":{"1":{}}}],["qualiti",{"_index":32,"title":{},"description":{"1":{}}}],["queri",{"_index":102,"title":{},"description":{"5":{}}}],["quick",{"_index":38,"title":{"2":{}},"description":{}}],["receiv",{"_index":109,"title":{},"description":{"6":{}}}],["represent",{"_index":104,"title":{},"description":{"5":{}}}],["request",{"_index":48,"title":{},"description":{"2":{}}}],["roi",{"_index":30,"title":{},"description":{"1":{}}}],["script",{"_index":95,"title":{},"description":{"5":{}}}],["sdk",{"_index":13,"title":{},"description":{"1":{},"7":{}}}],["send",{"_index":57,"title":{"3":{}},"description":{"5":{}}}],["sent",{"_index":91,"title":{},"description":{"5":{}}}],["server",{"_index":61,"title":{"3":{}},"description":{"4":{},"5":{},"6":{}}}],["simpl",{"_index":34,"title":{},"description":{"1":{}}}],["src=\"https://cdn.24metrics.com/lib/index.j",{"_index":96,"title":{},"description":{"5":{}}}],["start",{"_index":39,"title":{"2":{}},"description":{"2":{}}}],["statu",{"_index":55,"title":{},"description":{"2":{},"5":{}}}],["straightforward",{"_index":42,"title":{},"description":{"2":{}}}],["such",{"_index":67,"title":{},"description":{"4":{}}}],["summari",{"_index":107,"title":{"6":{}},"description":{}}],["support",{"_index":111,"title":{},"description":{"7":{}}}],["timezon",{"_index":73,"title":{},"description":{"4":{}}}],["track",{"_index":8,"title":{},"description":{"1":{}}}],["traffic",{"_index":26,"title":{},"description":{"1":{}}}],["transaction_id",{"_index":53,"title":{},"description":{"2":{},"5":{}}}],["uniqu",{"_index":69,"title":{},"description":{"4":{}}}],["us",{"_index":11,"title":{"8":{}},"description":{"1":{},"5":{},"6":{},"7":{}}}],["user",{"_index":70,"title":{},"description":{"4":{}}}],["user'",{"_index":66,"title":{},"description":{"4":{}}}],["web",{"_index":87,"title":{},"description":{"5":{}}}],["welcom",{"_index":4,"title":{},"description":{"1":{}}}],["x",{"_index":51,"title":{},"description":{"2":{},"5":{}}}]],"pipeline":[]}},"options":{"disableSearch":false,"expandResponses":"200,202","jsonSampleExpandLevel":1,"hideDownloadButton":true,"theme":{"logo":{"maxHeight":"40","maxWidth":"180","gutter":"8px"},"sidebar":{"backgroundColor":"#1D3D68","textColor":"#FFFFFF"},"rightPanel":{"backgroundColor":"#2B5081"},"typography":{"fontFamily":"IBM Plex Sans, Roboto, sans-serif","headings":{"fontFamily":"IBM Plex Sans, Roboto, sans-serif","fontWeight":"bold"},"code":{"fontSize":"13px","color":"#61226D","fontFamily":"IBM Plex Sans, Roboto, sans-serif"}}}}};
+
+      var container = document.getElementById('redoc');
+      Redoc.hydrate(__redoc_state, container);
+
+      </script>
+</body>
+
+</html>
